@@ -3,7 +3,7 @@ layout: post
 title:  "前端弹性动画与 framer-motion 动画库初探(Michael Test)"
 categories: JavaScript
 tags: 动画
-author: HyG
+author: Michael
 mathjax: true
 ---
 
