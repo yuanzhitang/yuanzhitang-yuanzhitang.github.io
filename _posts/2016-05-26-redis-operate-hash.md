@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Redis基础教程第3节 Strings"
+title:  "Redis基础教程第4节 Hash"
 date:   2016-05-26 10:26:58
 categories: Redis
 tags: Redis
