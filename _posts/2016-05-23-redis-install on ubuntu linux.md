@@ -13,7 +13,7 @@ tags: Redis
 
 
 
-步骤如下：
+## 步骤：
 
 1. ~$ sudo apt-get update
 
