@@ -3,7 +3,9 @@ layout: post
 title:  "Redis基础教程第5节 远程访问 Redis 基于 Python"
 date:   2016-05-31 14:48:14
 categories: Redis
-tags: Redis
+tags: Redis Docker Python
+author: Michael
+mathjax: true
 ---
 
 * content

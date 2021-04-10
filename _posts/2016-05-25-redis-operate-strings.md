@@ -4,6 +4,8 @@ title:  "Redis基础教程第3节 Strings"
 date:   2016-05-25 17:00:11
 categories: Redis
 tags: Redis
+author: Michael
+mathjax: true
 ---
 
 * content

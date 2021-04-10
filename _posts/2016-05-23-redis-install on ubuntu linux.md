@@ -4,6 +4,8 @@ title:  "Redis基础教程第1节 Ubuntu Linux 上安装Redis"
 date:   2016-05-23 22:41:34
 categories: Redis
 tags: Redis
+author: Michael
+mathjax: true
 ---
 
 * content

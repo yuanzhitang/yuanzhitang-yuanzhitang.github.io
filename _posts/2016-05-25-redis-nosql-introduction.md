@@ -4,6 +4,8 @@ title:  "Redis基础教程第2节 Redis和NoSql 介绍与应用场景"
 date:   2016-05-25 16:09:11
 categories: Redis
 tags: Redis
+author: Michael
+mathjax: true
 ---
 
 * content

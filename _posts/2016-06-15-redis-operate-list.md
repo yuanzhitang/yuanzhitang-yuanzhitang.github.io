@@ -1,9 +1,11 @@
 ---
 layout: post
 title:  "Redis基础教程第6节 List"
-date:   2016-05-26 10:26:58
+date:   2016-06-15 10:26:58
 categories: Redis
 tags: Redis
+author: Michael
+mathjax: true
 ---
 
 * content
