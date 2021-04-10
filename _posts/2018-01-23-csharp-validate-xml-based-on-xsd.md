@@ -12,7 +12,6 @@ mathjax: true
 {:toc}
 
 xml是常用的一种数据文件格式，它的定义文件为Xml schema definition（XSD）,那么怎么验证一个xml是否符合它的schema定义呢?
-
 本文给出C#的代码实现。
 
 ### 样例XML
