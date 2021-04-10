@@ -18,7 +18,7 @@ Python: 3.6.0
 库: socket
 
 ## 1. 问题初见
-仿照书中的代码（中文版 55-56页） 加上自己的一点改动在我的环境中不能运行，总是报这个错误：TypeError: a bytes-like object is required, not 'str'
+仿照书中的代码（中文版 55-56页） 加上自己的一点改动在我的环境中不能运行，总是报这个错误：*TypeError: a bytes-like object is required, not 'str'*
 
 这里是我的客户端Socket代码
 ```python
