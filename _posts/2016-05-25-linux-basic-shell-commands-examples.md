@@ -34,8 +34,7 @@ tangym@ubuntu:~$ pwd
 
 ### cat fs， then press <Tab>. Shell will fill the whole file name automtically.
 ### ls m*  : list all the file name starts with: m
-### ls magi?  : list all the file name starts with : magi and following one character.
-          Like: magic
+### ls magi?  : list all the file name starts with : magi and following one character. For e.g.: magic
 ### ls m*[od]  : list all starts with : m, end with: o or d.
 ### ls -l   : show all file's properties:
 
