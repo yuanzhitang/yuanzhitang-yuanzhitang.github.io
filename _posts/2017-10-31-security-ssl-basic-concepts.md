@@ -11,28 +11,28 @@ mathjax: true
 * content
 {:toc}
 
-PKC: Public-Key certificate 公钥证书或者简称Certificate
+**PKC**: Public-Key certificate 公钥证书或者简称Certificate
 
-CA: Certification Authority认证机构，对公钥施加数字签名
+**CA**: Certification Authority认证机构，对公钥施加数字签名
 
-CRL: Certificate Revocation List证书作废清单
+**CRL**: Certificate Revocation List证书作废清单
 
-PKI: Public Key Infrastructure公钥基础设置，是为了能够更有效的运用公钥而制定的一系列规范和规格的总称。
+**PKI**: Public Key Infrastructure公钥基础设置，是为了能够更有效的运用公钥而制定的一系列规范和规格的总称。
 
-PKCS: PKI的一种，由RSK制定Public-Key Cryptography Standards.
+**PKCS**: PKI的一种，由RSK制定Public-Key Cryptography Standards.
 
-Root CA: 根CA，最高的级别的机构对自己的公钥进行数字签名的行为成为自签名 (Self-signature)
+**Root CA**: 根CA，最高的级别的机构对自己的公钥进行数字签名的行为成为自签名 (Self-signature)
 
 
 
 数字证书格式（cer和pfx）的区别 
 
-1. pfx 证书文件是带有私钥，由Public Key Cryptography Standards #12，PKCS#12标准定义，包含了公钥和私钥的二进制格式的证书形式
+* 1. pfx 证书文件是**带有私钥**，由Public Key Cryptography Standards #12，PKCS#12标准定义，包含了公钥和私钥的二进制格式的证书形式
 
-2. 二进制编码的证书 
+* 2. 二进制编码的证书
 证书中没有私钥，DER 编码二进制格式的证书文件，以cer作为证书文件后缀名。 
 
-3. Base64编码的证书 
+* 3. Base64编码的证书
 证书中没有私钥，BASE64 编码格式的证书文件，也是以cer作为证书文件后缀名。
 
 由定义可以看出，只有pfx格式的数字证书是包含有私钥的，cer格式的数字证书里面只有公钥没有私钥。
