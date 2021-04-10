@@ -11,14 +11,14 @@ tags: Redis Docker
 
 ### 1. Pull Redis Image
 
-输入命令：docker pull redis，从Docker Hub上面拉取一份Redis p_w_picpath
+输入命令：```shell docker pull redis```，从Docker Hub上面拉取一份Redis p_w_picpath
 
 <img width="80%" src="https://yuanzhitang.github.io/images/pull-redis-image.png"/>
 
 
 ### 2. 创建Redis 实例
 
-输入命令：docker run -d --name mikeredis -p 6379 redis ， 启动 Redis并命名为mikeredis,port 采用默认端口
+输入命令：```shell docker run -d --name mikeredis -p 6379 redis ```， 启动 Redis并命名为mikeredis,port 采用默认端口
 
 <img width="80%" src="https://yuanzhitang.github.io/images/create-redis-docker-container.png"/>
 
