@@ -59,14 +59,12 @@ urllib.urlopen()方法用于打开一个url地址。
 
 read()方法用于读取URL上的数据，并把整个页面下载下来。
 
-
-
 3. 在Chrome中按F12可以查看到网页的源代码，可以看到新闻位于 div id="instant-news"下面
 
 <img width="100%" src="https://yuanzhitang.github.io/images/baidu-instant-news-code-layout.png"/>
 
 
-1. 获取即时信息的整个div的html并存储到变量: instant_news_html
+4. 获取即时信息的整个div的html并存储到变量: instant_news_html
 ```python
 pattern_of_instant_news = re.compile('<div id="instant-news.*?</div>',re.S)
 instant_news_html = re.findall(pattern_of_instant_news, html)[0]
@@ -78,7 +76,7 @@ pattern_of_news = re.compile('<li><a.*?>(.*?)</a></li>', re.S)
 news_list = re.findall(pattern_of_news, instant_news_html)
 for news in news_list:
     print(news)
-```p
+```
 
 将会看到如入结果
 
