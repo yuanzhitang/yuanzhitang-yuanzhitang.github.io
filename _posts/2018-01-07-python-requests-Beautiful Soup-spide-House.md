@@ -186,7 +186,7 @@ GB 18030，全称：国家标准 GB 18030-2005《信息技术中文编码字符�
 rep.encoding = "gb18030"
 ```
 
-### 完整的代码
+## 完整的代码
 
 ```python
 from bs4 import BeautifulSoup
