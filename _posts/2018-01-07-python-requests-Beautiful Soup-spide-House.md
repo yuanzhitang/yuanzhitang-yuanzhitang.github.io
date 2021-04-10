@@ -32,16 +32,9 @@ PyCharm: Community 2017.2
 库2 : beautifulsoup
 
 
-
-
 ## Requests知识概要
 
-
-Requests 是用Python语言编写，基于 urllib，采用 Apache2 Licensed 开源协议的 HTTP 库。它比 urllib 更加方便，可以节约我们大量的工作，完全满足 HTTP 测试需求。
-
-完全支持Python3哦
-
-
+Requests 是用Python语言编写，基于 urllib，采用 Apache2 Licensed 开源协议的 HTTP 库。它比 urllib 更加方便，可以节约我们大量的工作，完全满足 HTTP 测试需求。完全支持Python3哦
 
 1. 安装requests 
 
@@ -76,7 +69,7 @@ from bs4 import BeautifulSoup
 ```
 
 3. 一个简单例子
-```python
+```
 from bs4 import BeautifulSoup
 html = "<ul class='country'><li>中国</li><li>美国</li></ul>"
 # 解析html然后得到一个soup文档
@@ -95,14 +88,11 @@ for countryname in ul.find_all('li'):
 ## 实战爬取房天下推荐新楼盘
 
 
-
 1. 在Chrome中打开sh.fang.com地址，按F12观察新盘推荐tab的网页源代码结构
-
 
 主要结构是: 顶层为一个名为ti011的div，下面有四个class为tenrtd的div用于四个楼盘的现实。每个楼盘下面有一个class = "text1"的div存储了楼盘名称，另一个class = "text2"的存储了楼盘的价格。
 
 <img width="100%" src="https://yuanzhitang.github.io/images/fang-code-layout.png"/>
-
 
 2. 第一版代码完成如下，但是发现有一个中文乱码的问题
 ```python
@@ -135,7 +125,7 @@ for house in div.find_all('div', attrs={'class': 'tenrtd'}):
 
 3. 研究中文乱码问题
 
-    中文乱码也算是requests常见的一个问题，为什么会这样的呢，看bs自己的文档描述
+   中文乱码也算是requests常见的一个问题，为什么会这样的呢，看bs自己的文档描述
 
 Encodings
 When you receive a response, Requests makes a guess at the encoding to use for decoding the response 
