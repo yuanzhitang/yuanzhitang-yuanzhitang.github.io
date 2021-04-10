@@ -16,14 +16,14 @@ Redis hash是一个string类型的field和value映射表。hash特别适合于�
 
 
 ### hset
-```
+```shell
 redis 127.0.0.1:6379> hset user:001 name michael
 (integer) 1
 redis 127.0.0.1:6379> hget user:001 name
 "michael"
 ```
 ### hsetnx
-```
+```shell
 redis 127.0.0.1:6379> hsetnx user:003 name jason
 (integer) 1
 redis 127.0.0.1:6379> hsetnx user:003 name tom
@@ -33,7 +33,7 @@ redis 127.0.0.1:6379> hget user:003 name
 ```
 
 ### hmset/hmget
-```
+```shell
 redis 127.0.0.1:6379> hmset user:004 name michael age 29 sex 1
 OK
 redis 127.0.0.1:6379> hget user:004 name
@@ -49,7 +49,7 @@ redis 127.0.0.1:6379> hmget user:004 name age sex
 ```
 
 ### hincrby 
-```
+```shell
 redis 127.0.0.1:6379> hincrby user:004 age 5
 (integer) 34
 redis 127.0.0.1:6379> hget user:004 age
@@ -57,7 +57,7 @@ redis 127.0.0.1:6379> hget user:004 age
 ```
 
 ### hexists 
-```
+```shell
 redis 127.0.0.1:6379> hexists user:004 age
 (integer) 1
 redis 127.0.0.1:6379> hexists user:004 address
@@ -65,13 +65,13 @@ redis 127.0.0.1:6379> hexists user:004 address
 
 ```
 ### hlen 
-```
+```shell
 redis 127.0.0.1:6379> hlen user:004
 (integer) 3
 ```
 
 ### hdel 
-```
+```shell
 redis 127.0.0.1:6379> hdel user:004 age
 (integer) 1
 redis 127.0.0.1:6379> hexists user:004 address
@@ -81,7 +81,7 @@ redis 127.0.0.1:6379> hget user:004 age
 ```
 
 ### hkeys hvals hgetall 
-```
+```shell
 redis 127.0.0.1:6379> hkeys user:004
 1) "name"
 2) "sex"

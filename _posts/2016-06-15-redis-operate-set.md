@@ -20,7 +20,7 @@ Set集合中不允许出现重复的元素，和List类型相比，Set类型在�
 
 
 ### sadd
-```
+```shell
 129.223.248.154:6379> sadd students tim
 (integer) 1
 129.223.248.154:6379> sadd students tim ben
@@ -28,7 +28,7 @@ Set集合中不允许出现重复的元素，和List类型相比，Set类型在�
 ```
 
 ### srem
-```
+```shell
 129.223.248.154:6379> srem student tim
 (integer) 0
 129.223.248.154:6379> srem students tim
@@ -36,7 +36,7 @@ Set集合中不允许出现重复的元素，和List类型相比，Set类型在�
 ```
 
 ### smembers、sismember
-```
+```shell
 129.223.248.154:6379> smembers students
 1) "ben"
 129.223.248.154:6379> sismember students ben
@@ -46,7 +46,7 @@ Set集合中不允许出现重复的元素，和List类型相比，Set类型在�
 ```
 
 ### sdiff 差集
-```
+```shell
 129.223.248.154:6379> sadd setDiffA 1 2 3
 (integer) 3
 129.223.248.154:6379> sadd setDiffB 2 3 4
@@ -58,7 +58,7 @@ setDiffA setDiffB
 ```
 
 ### sinter 交集
-```
+```shell
 129.223.248.154:6379> sadd setInterA 1 2 3
 (integer) 3
 129.223.248.154:6379> sadd setInterB 2 3 4
@@ -71,7 +71,7 @@ setInterA setInterB
 ```
 
 ### sunion 并集
-```
+```shell
 129.223.248.154:6379> sadd setUnionA 1 2 3
 (integer) 3
 129.223.248.154:6379> sadd setUnionB 2 4 6
@@ -87,7 +87,7 @@ setUnionA setUnionB
 ```
 
 ### scard 集合总数
-```
+```shell
 129.223.248.154:6379> 
 scard 
 students
@@ -112,7 +112,7 @@ students
 ```
 
 ### srandmember
-```
+```shell
 129.223.248.154:6379> sadd letters a b c
 (integer) 3
 129.223.248.154:6379> 
@@ -123,7 +123,7 @@ letters 2
 ```
 
 ### spop
-```
+```shell
 129.223.248.154:6379> spop letters
 "b"
 129.223.248.154:6379> smembers letters

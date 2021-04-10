@@ -38,7 +38,7 @@ BLPOP,BRPOP阻塞式左/右弹出
 
 
 ### lpush
-```
+```shell
 129.223.248.154:6379> lpush members ben
 (integer) 1
 129.223.248.154:6379> lpush members jeff
@@ -48,7 +48,7 @@ BLPOP,BRPOP阻塞式左/右弹出
 ```
 
 ### lpop
-```
+```shell
 129.223.248.154:6379> lpop members
 "raymond"
 129.223.248.154:6379> rpop members
@@ -56,14 +56,14 @@ BLPOP,BRPOP阻塞式左/右弹出
 ```
 
 ### llen
-```
+```shell
 129.223.248.154:6379> llen members
 (integer) 4
 ```
 
 ### lrange
 (lrange firstqueue 0 -1 列出list中全部元素值）
-```
+```shell
 129.223.248.154:6379> lrange members 0 2
 1) "richard"
 2) "jemery"
@@ -89,7 +89,7 @@ BLPOP,BRPOP阻塞式左/右弹出
 ```
 
 ### rpop
-```
+```shell
 129.223.248.154:6379> rpop members
 "derek"
 129.223.248.154:6379> lpop members
@@ -101,7 +101,7 @@ BLPOP,BRPOP阻塞式左/右弹出
 ```
 
 ### lindex
-```
+```shell
 129.223.248.154:6379> lindex members 1
 "mike"
 129.223.248.154:6379> llen members
@@ -121,7 +121,7 @@ BLPOP,BRPOP阻塞式左/右弹出
 
 ### rpoplpush
 从第一个list的尾部移除元素并添加到第二个list的头部,最后返回被移除的元素值，整个操作是原子的.如果第一个list是空或者不存在返回nil
-```
+```shell
 129.223.248.154:6379> rpoplpush firstqueue secqueue
 "1"
 129.223.248.154:6379> lrange firstqueue 0 -1
