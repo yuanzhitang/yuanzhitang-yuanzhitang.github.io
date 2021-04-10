@@ -54,10 +54,9 @@ url = "http://news.baidu.com/guonei"
 response = urllib.request.urlopen(url)
 html = response.read().decode('utf-8')
 ```
+    urllib.urlopen()方法用于打开一个url地址。
 
-urllib.urlopen()方法用于打开一个url地址。
-
-read()方法用于读取URL上的数据，并把整个页面下载下来。
+    read()方法用于读取URL上的数据，并把整个页面下载下来。
 
 3. 在Chrome中按F12可以查看到网页的源代码，可以看到新闻位于 div id="instant-news"下面
 
@@ -78,7 +77,7 @@ for news in news_list:
     print(news)
 ```
 
-将会看到如入结果
+    将会看到如入结果
 
 <img width="100%" src="https://yuanzhitang.github.io/images/python-baidu-news-spider-result.png"/>
 
