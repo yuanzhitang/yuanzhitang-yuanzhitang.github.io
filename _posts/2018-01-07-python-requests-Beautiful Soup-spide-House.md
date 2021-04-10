@@ -69,7 +69,7 @@ from bs4 import BeautifulSoup
 ```
 
 3. 一个简单例子
-```python
+
 from bs4 import BeautifulSoup
 html = "<ul class='country'><li>中国</li><li>美国</li></ul>"
 #解析html然后得到一个soup文档
@@ -83,7 +83,6 @@ print(ul.find('li'))     # returns the first match element
 #下面代码返回又有匹配的元素
 for countryname in ul.find_all('li'):
     print(countryname)
-```
 
 ## 实战爬取房天下推荐新楼盘
 
