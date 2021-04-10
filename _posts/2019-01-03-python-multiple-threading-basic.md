@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Python 3多线程编程学习笔记-基础篇"
-date:   2018-01-03 10:45:42
+date:   2019-01-03 10:45:42
 categories: Python
 tags: Python 多线程
 author: Michael
@@ -18,7 +18,7 @@ Python代码的执行都是有Python虚拟机进行控制的。当初设计Pytho
 怎么做到这样控制的呢？就是这里的GIL来控制的，这个锁用来保证同时只有一个线程在运行。
 
 执行方式：
-<img width="90%" src="https://yuanzhitang.github.io/images/python-gil.png"/>
+<img width="100%" src="https://yuanzhitang.github.io/images/python-gil.png"/>
 Python 3多线程编程学习笔记-基础篇
 
 这几个细节知识点：
