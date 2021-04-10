@@ -64,7 +64,7 @@ def send(self, data, flags=None): # real signature unknown; restored from __doc_
 ```
 这个send方法的参数期望的是一个 "a data string" 啊，而我确实给了一个string。
 
-哪里出问题了？ 继续查看官方文档Socket，发现原因了。
+哪里出问题了？ 继续查看[官方文档Socket](https://docs.python.org/3/library/socket.html)，发现原因了。
 
 官方对Socket的说明：
 ```python
@@ -87,14 +87,14 @@ data = clientSocket.recv(1024)
 如果要打印data数据的话，也要调用decode()从而将数据从bytes转化为str。
 
 ## 4. encode() 和 decode()
-encode()编码 ： str -> bytes
-decode()解码 ： bytes -> str
+* encode()编码 ： str -> bytes
+* decode()解码 ： bytes -> str
 
 默认的encoding是 utf-8
 
 更多内容见官方文档：
-str.encode()
-bytes.decode()
+[str.encode()](https://docs.python.org/3/library/stdtypes.html?highlight=decode#str.encode)
+[bytes.decode()](https://docs.python.org/3/library/stdtypes.html?highlight=decode#bytes.decode)
 
 ## 5. 完整Socket代码
 ### 服务端：
