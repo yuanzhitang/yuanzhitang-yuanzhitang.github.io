@@ -13,7 +13,7 @@ mathjax: true
 
 Python应用于爬虫领域业界已经相当的广泛了，今天就采用urllib + re 爬取下百度国内即时新闻。
 
-<img width="80%" src="https://yuanzhitang.github.io/images/baidu-china-news.png"/>
+<img width="100%" src="https://yuanzhitang.github.io/images/baidu-china-news.png"/>
 
 
 ### 软件环境
@@ -63,7 +63,7 @@ read()方法用于读取URL上的数据，并把整个页面下载下来。
 
 3. 在Chrome中按F12可以查看到网页的源代码，可以看到新闻位于 div id="instant-news"下面
 
-<img width="80%" src="https://yuanzhitang.github.io/images/baidu-instant-news-code-layout.png"/>
+<img width="100%" src="https://yuanzhitang.github.io/images/baidu-instant-news-code-layout.png"/>
 
 
 1. 获取即时信息的整个div的html并存储到变量: instant_news_html
@@ -82,7 +82,7 @@ for news in news_list:
 
 将会看到如入结果
 
-<img width="80%" src="https://yuanzhitang.github.io/images/python-baidu-news-spider-result.png"/>
+<img width="100%" src="https://yuanzhitang.github.io/images/python-baidu-news-spider-result.png"/>
 
 ### 完整源代码
 ```python
@@ -105,7 +105,5 @@ for news in news_list:
 ```
 
 参考资料：
-
-urllib
-
-re
+[urllib](https://www.liaoxuefeng.com/wiki/1016959663602400/1019223241745024)
+[re](https://www.cnblogs.com/cmt/p/14580194.html?from=https%3A%2F%2Fwww.cnblogs.com%2FMrFiona%2Fp%2F5954084.html)
