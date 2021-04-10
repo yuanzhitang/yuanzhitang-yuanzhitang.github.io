@@ -25,9 +25,9 @@ PyCharm: Community 2017.2
 
 
 
-Python 下载地址 https://www.python.org/downloads/
+Python [下载地址](https://www.python.org/downloads/)
 
-Pycharm 下载地址(Community是免费的) https://www.jetbrains.com/pycharm/download/#section=windows 
+Pycharm [下载地址(Community是免费的)](https://www.jetbrains.com/pycharm/download/#section=windows)
 
 
 
