@@ -14,31 +14,31 @@ mathjax: true
 本文介绍基础的Linux Shell命令和案例：
 
 
-cd /  : entry root directory
+### cd /  : entry root directory
 ```shell
 tangym@ubuntu:/etc$ cd /
 tangym@ubuntu:/$ pwd
 ```
-cd ~  : entry user root directory
+### cd ~  : entry user root directory
 ```shell
 tangym@ubuntu:/$ cd ~
 tangym@ubuntu:~$ pwd
 /home/tangym
 ```
-ls    : list all files.
-pwd   : show current directory
-cd /home :  entry home directory
-cd .. : entry the last parent directory
+### ls    : list all files.
+### pwd   : show current directory
+### cd /home :  entry home directory
+### cd .. : entry the last parent directory
 
-cat fstab: show the text file content.
+### cat fstab: show the text file content.
 
-cat fs， then press <Tab>. Shell will fill the whole file name automtically.
-ls m*  : list all the file name starts with: m
-ls magi?  : list all the file name starts with : magi and following one character.
+### cat fs， then press <Tab>. Shell will fill the whole file name automtically.
+### ls m*  : list all the file name starts with: m
+### ls magi?  : list all the file name starts with : magi and following one character.
           Like: magic
-ls m*[od]  : list all starts with : m, end with: o or d.
-ls -l   : show all file's properties:
--------------------------
+### ls m*[od]  : list all starts with : m, end with: o or d.
+### ls -l   : show all file's properties:
+
 ```shell
 tangym@ubuntu:~$ ls -l
 total 204112
@@ -52,10 +52,10 @@ drwxr-xr-x  2 tangym tangym      4096 May 29  2015 Pictures
 drwxr-xr-x  2 tangym tangym      4096 May 29  2015 Public
 
 ```
-dir : show all files
-vdir: show all files and its properties
+### dir : show all files
+### vdir: show all files and its properties
 
-cat -n .bashrc: show file content with rowcount
+### cat -n .bashrc: show file content with rowcount
 ```shell
 tangym@ubuntu:~$ cat -n .bashrc
      1 # ~/.bashrc: executed by bash(1) for non-login shells.
@@ -63,17 +63,17 @@ tangym@ubuntu:~$ cat -n .bashrc
      3 # for examples
      4
 ```
-more .bashrc : show file content in separate page.
+### more .bashrc : show file content in separate page.
 ```shell
 tangym@ubuntu:~$ more .bashrc
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 ```
-head -n 5 .bashrc : show first 5 row content
-tail -n 5 .bashrc    : show last 5 row content.
+### head -n 5 .bashrc : show first 5 row content
+### tail -n 5 .bashrc    : show last 5 row content.
 
-grep PS1 .bashrc    : find all row content with: PS1
+### grep PS1 .bashrc    : find all row content with: PS1
 ```shell
 tangym@ubuntu:~$ grep PS1 .bashrc
 [ -z "$PS1" ] && return
@@ -81,7 +81,7 @@ tangym@ubuntu:~$ grep PS1 .bashrc
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
     PS1="\[\e]0;${debian_chroot:+($debian_chro
 ```
-find ./ -name *bash*  : Find file name with: bash in current directory.
+### find ./ -name *bash*  : Find file name with: bash in current directory.
 ```shell
 tangym@ubuntu:~$ find ./ -name *bash*
 ./.bash_history
@@ -93,26 +93,26 @@ tangym@ubuntu:~$ locate bash  // similar to find . find file/directory with :bac
 tangym@ubuntu:~$ sudo updatedb //force update local db for Locate command
 tangym@ubuntu:~$ firefox www.baidu.com : open firefox webbrowser
 ```
-whereis find  : get command's notebook
+### whereis find  : get command's notebook
 ```shell
 tangym@ubuntu:~$ whereis find : get notebook
 find: /usr/bin/find /usr/bin/X11/find /usr/share/man/man1/find.1.gz
 tangym@ubuntu:~$ whereis -b find 
 ```
-find: /usr/bin/find /usr/bin/X11/find
+### find: /usr/bin/find /usr/bin/X11/find
 
-which ls: find where is ls command
+### which ls: find where is ls command
 
 ```shell
 tangym@ubuntu:~$ which ls
 /bin/ls
 ```
 
-who
-whoami
-uname
-uname -a
-uname -r : kernel version
+### who
+### whoami
+### uname
+### uname -a
+### uname -r : kernel version
 
 ```shell
 tangym@ubuntu:~$ who
@@ -131,7 +131,7 @@ tangym@ubuntu:~$ uname -a
 Linux ubuntu 3.2.0-29-generic #46-Ubuntu SMP Fri Jul 27 17:03:23 UTC 2012 x86_64 x86_64 x86_64 GNU/Linux
 ```
 
-man find  :　get the find command decription
+### man find  :　get the find command decription
 
 ```shell
 tangym@ubuntu:~$ man find
@@ -139,7 +139,7 @@ tangym@ubuntu:~$ man find
 
 
 
-whatis ls: get the command common usage.
+### whatis ls: get the command common usage.
 ```shell
 tangym@ubuntu:~$ whatis ls
 ls (1)               - list directory contents
