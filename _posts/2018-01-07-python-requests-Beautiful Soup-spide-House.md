@@ -69,7 +69,6 @@ from bs4 import BeautifulSoup
 ```
 
 3. 一个简单例子
-```python
 
 from bs4 import BeautifulSoup
 html = "<ul class='country'><li>中国</li><li>美国</li></ul>"
@@ -84,8 +83,6 @@ print(ul.find('li'))     # returns the first match element
 #下面代码返回又有匹配的元素
 for countryname in ul.find_all('li'):
     print(countryname)
-
-```
 
 ## 实战爬取房天下推荐新楼盘
 
@@ -221,9 +218,9 @@ for house in div.find_all('div', attrs={'class': 'tenrtd'}):
 
 问题解决了，关键知识点总结：
 
-可以采用requests库来获取网页html
+* 可以采用requests库来获取网页html
 
-采用Beautiful soup基于html构建一个soup文档，然后用find 或者 find_all方法查询自己需要的html节点
+* 采用Beautiful soup基于html构建一个soup文档，然后用find 或者 find_all方法查询自己需要的html节点
 
-根据目标网页的内容来更改response.encoding从而解决乱码问题
+* 根据目标网页的内容来更改response.encoding从而解决乱码问题
 
