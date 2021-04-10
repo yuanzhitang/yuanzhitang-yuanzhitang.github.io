@@ -42,18 +42,18 @@ Pycharm 下载地址(Community是免费的) https://www.jetbrains.com/pycharm/do
 
 
 1. 导入urllib 和 re 两个模块
-
+```python
 import urllib
 from urllib import request
 import re
-
+```
 
 2. 采用urllib.request.urlopen 打开百度信息url,并取得所有html
-
+```python
 url = "http://news.baidu.com/guonei"
 response = urllib.request.urlopen(url)
 html = response.read().decode('utf-8')
-
+```
 
 urllib.urlopen()方法用于打开一个url地址。
 
@@ -67,23 +67,25 @@ read()方法用于读取URL上的数据，并把整个页面下载下来。
 
 
 1. 获取即时信息的整个div的html并存储到变量: instant_news_html
-
+```python
 pattern_of_instant_news = re.compile('<div id="instant-news.*?</div>',re.S)
 instant_news_html = re.findall(pattern_of_instant_news, html)[0]
-
+```
 
 5. 从全部news的html中匹配出每一个新闻标题
-
+```python
 pattern_of_news = re.compile('<li><a.*?>(.*?)</a></li>', re.S)
 news_list = re.findall(pattern_of_news, instant_news_html)
 for news in news_list:
     print(news)
+```p
+
 将会看到如入结果
 
 <img width="80%" src="https://yuanzhitang.github.io/images/python-baidu-news-spider-result.png"/>
 
 ### 完整源代码
-
+```python
 import urllib
 from urllib import request
 import re
@@ -100,7 +102,7 @@ news_list = re.findall(pattern_of_news, instant_news_html)
 
 for news in news_list:
     print(news)
-
+```
 
 参考资料：
 
