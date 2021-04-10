@@ -3,7 +3,7 @@ layout: post
 title:  "Python3.X Socket 一个编码与解码的坑"
 date:   2018-01-14 17:04:41
 categories: Python
-tags: Python requests BeautifulSoup Spider
+tags: Python Encode Decode Socket
 author: Michael
 mathjax: true
 ---
@@ -83,7 +83,7 @@ clientSocket.send(data.encode())
 如下代码得到的data，是无法直接打印的。
 ```python
 data = clientSocket.recv(1024)
-```p
+```
 如果要打印data数据的话，也要调用decode()从而将数据从bytes转化为str。
 
 ## 4. encode() 和 decode()
