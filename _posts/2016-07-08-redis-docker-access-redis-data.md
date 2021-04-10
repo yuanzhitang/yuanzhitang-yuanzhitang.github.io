@@ -4,6 +4,8 @@ title:  "基于Docker来存取redis数据"
 date:   2017-07-08 23:49:08
 categories: Redis
 tags: Redis Docker
+author: Michael
+mathjax: true
 ---
 
 * content
