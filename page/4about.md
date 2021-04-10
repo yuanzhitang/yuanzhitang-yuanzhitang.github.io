@@ -11,8 +11,11 @@ type: page
 
 ## 关于我
 
-<iframe src="https://githubbadge.appspot.com/gaohaoyang?s=1" style="border: 0;height: 142px;width: 200px;overflow: hidden;" frameBorder="0"></iframe>
+I am a Developer, Good at .NET/.NETCore technology such as ASP.NET MVC,WebAPI, WPF,WCF,EF,LINQ... Love TDD,Code Refactor, CI, Soft Design, Container, Kafka
 
+<!--
+<iframe src="https://githubbadge.appspot.com/gaohaoyang?s=1" style="border: 0;height: 142px;width: 200px;overflow: hidden;" frameBorder="0"></iframe>
+-->
 ## 联系我
 
 * GitHub：[YuanzhiTang](https://github.com/yuanzhitang)
