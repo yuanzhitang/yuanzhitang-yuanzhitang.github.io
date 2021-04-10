@@ -39,7 +39,7 @@ static void Main(string[] args)
 
         }
 ```
-#### 输出结果：
+#### 输出结果
 <img width="90%" src="https://yuanzhitang.github.io/images/Csharp-output-big-integer.png"/>
 
 
