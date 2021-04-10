@@ -69,7 +69,7 @@ from bs4 import BeautifulSoup
 ```
 
 3. 一个简单例子
-
+```python
 from bs4 import BeautifulSoup
 html = "<ul class='country'><li>中国</li><li>美国</li></ul>"
 #解析html然后得到一个soup文档
@@ -83,17 +83,18 @@ print(ul.find('li'))     # returns the first match element
 #下面代码返回又有匹配的元素
 for countryname in ul.find_all('li'):
     print(countryname)
+```
 
 ## 实战爬取房天下推荐新楼盘
 
 
-1. 在Chrome中打开sh.fang.com地址，按F12观察新盘推荐tab的网页源代码结构
+#### 1. 在Chrome中打开sh.fang.com地址，按F12观察新盘推荐tab的网页源代码结构
 
 主要结构是: 顶层为一个名为ti011的div，下面有四个class为tenrtd的div用于四个楼盘的现实。每个楼盘下面有一个class = "text1"的div存储了楼盘名称，另一个class = "text2"的存储了楼盘的价格。
 
 <img width="100%" src="https://yuanzhitang.github.io/images/fang-code-layout.png"/>
 
-2. 第一版代码完成如下，但是发现有一个中文乱码的问题
+#### 2. 第一版代码完成如下，但是发现有一个中文乱码的问题
 ```python
 from bs4 import BeautifulSoup
 import requests
@@ -122,7 +123,7 @@ for house in div.find_all('div', attrs={'class': 'tenrtd'}):
  ÐÂÎ÷ÌÁ¿×È¸³Ç     14000Ôª/©O
 
 
-3. 研究中文乱码问题
+#### 3. 研究中文乱码问题
 
    中文乱码也算是requests常见的一个问题，为什么会这样的呢，看bs自己的文档描述
 
@@ -144,7 +145,7 @@ for house in div.find_all('div', attrs={'class': 'tenrtd'}):
 print(rep.apparent_encoding)
 ```
 
-4. 换编码解决中文字符
+#### 4. 换编码解决中文字符
 
     经过上面的研究，我们修订代码对response设定encoding = "GB2312"
 
@@ -159,7 +160,7 @@ rep.encoding = "GB2312"
 
 
 
-5. 研究解决特殊字符乱码问题
+#### 5. 研究解决特殊字符乱码问题
 
    引起乱码的原因估计就是在字符集中找不到特定的字符，比如这个㎡。是不是GB2312这个字符集不够全面呢？带着这个疑问去查阅相关的资料关于中文的几个编码：
 
