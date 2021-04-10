@@ -63,10 +63,7 @@ print(response.text)     #text返回的是处理过的Unicode型的数据
 
 ## Beautiful Soup简要知识
 
-1. Beautiful Soup 是一个非常流行的 Python 模块。 该模块可以解析网页， 并
-
-提供定位 内 容的便捷接 口 。 如果你还没有安装该模块， 可以使用下面的命令
-
+1. Beautiful Soup 是一个非常流行的 Python 模块。 该模块可以解析网页， 并提供定位内容的便捷接口。 如果你还没有安装该模块， 可以使用下面的命令
 安装其最新版本：
 ```
 pip install beautifulsoup4
@@ -81,7 +78,6 @@ from bs4 import BeautifulSoup
 3. 一个简单例子
 ```python
 from bs4 import BeautifulSoup
-
 html = "<ul class='country'><li>中国</li><li>美国</li></ul>"
 # 解析html然后得到一个soup文档
 soup = BeautifulSoup(html,'html.parser')
@@ -108,7 +104,7 @@ for countryname in ul.find_all('li'):
 <img width="100%" src="https://yuanzhitang.github.io/images/fang-code-layout.png"/>
 
 
-1. 第一版代码完成如下，但是发现有一个中文乱码的问题
+2. 第一版代码完成如下，但是发现有一个中文乱码的问题
 ```python
 from bs4 import BeautifulSoup
 import requests
@@ -182,9 +178,6 @@ GB2312
 
 GB 2312 或 GB 2312-80 是中国国家标准简体中文字符集，全称《信息交换用汉字编码字符集·基本集》，又称 GB 0，由中国国家标准总局发布，1981 年 5 月 1 日实施。GB 2312 编码通行于中国大陆；新加坡等地也采用此编码。中国大陆几乎所有的中文系统和国际化的软件都支持 GB 2312。GB 2312 标准共收录 6763 个汉字，其中一级汉字 3755 个，二级汉字 3008 个；同时收录了包括拉丁字母、希腊字母、日文平假名及片假名字母、俄语西里尔字母在内的 682 个字符。GB 2312 的出现，基本满足了汉字的计算机处理需要，它所收录的汉字已经覆盖中国大陆99.75% 的使用频率。对于人名、古汉语等方面出现的罕用字，GB 2312 不能处理，这导致了后来 GBK 及 GB 18030 汉字字符集的出现。
 
-
-
-       
 
 * GBK
 
