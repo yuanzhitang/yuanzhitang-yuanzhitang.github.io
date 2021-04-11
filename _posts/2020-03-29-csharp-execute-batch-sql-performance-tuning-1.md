@@ -12,6 +12,10 @@ mathjax: true
 {:toc}
 
 本文介绍了几种如何使用一个SqlCommand执行多条SQL语句的技术。
+* SqlCommand.ExecuteNonQuery执行多条SQL
+* 使用Data Reader执行两个SELECT语句
+* 将SqlDataAdapter用于多个SELECT语句
+* 执行匿名T-SQL块
 
 
 
