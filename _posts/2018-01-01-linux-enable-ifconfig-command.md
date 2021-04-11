@@ -14,6 +14,8 @@ mathjax: true
 最近安装了一个最小化版本的CentOS 7，发现不能使用 ifconfig命令，界面提示：
 ```shellifconfig command not found.```
 
+
+
 ### 解决办法
 
 从yum找出哪个包括ifconfig 命令

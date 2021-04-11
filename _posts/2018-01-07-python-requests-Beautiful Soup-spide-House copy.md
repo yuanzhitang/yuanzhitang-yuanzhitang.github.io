@@ -20,7 +20,6 @@ mathjax: true
 首先，觉得Beautiful soup解析网页更加符合人类的常规思维，比使用正则表达式（python中的re库）更容易理解。 同时关于requests遇到了中文字符和特殊字符解码的问题。本文都将给于深入的解说。
 
 
-
 ### 软件环境
 
 Python    : 3.6.0   

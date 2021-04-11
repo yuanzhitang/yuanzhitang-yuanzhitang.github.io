@@ -13,6 +13,8 @@ mathjax: true
 
 今天遇到一个要处理XSD中Integer的数值区间的计算的问题，Integer这个类型的值区间理论上是可没有边界的，假设目前的值是1.5E+10000, 这个数字已经达到double和Int64都无法存储了，同时我还要对如此大的数字进行加减运算，后来发现了BigInteger这个类可以很好的解决我遇到的问题。^_^
 
+
+
 ### BigInteger
 自.net framework 4.0开始引入， 位于命名空间：
 ```cs

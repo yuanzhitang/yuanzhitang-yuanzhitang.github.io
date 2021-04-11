@@ -16,19 +16,16 @@ Python应用于爬虫领域业界已经相当的广泛了，今天就采用urlli
 <img width="100%" src="https://yuanzhitang.github.io/images/baidu-china-news.png"/>
 
 
-### 软件环境
 
+### 软件环境
 
 Python    : 3.6.0   
 
 PyCharm: Community 2017.2 
 
-
-
 Python [下载地址](https://www.python.org/downloads/)
 
 Pycharm [下载地址(Community是免费的)](https://www.jetbrains.com/pycharm/download/#section=windows)
-
 
 
 ### 主要思路

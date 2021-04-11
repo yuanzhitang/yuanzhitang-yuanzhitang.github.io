@@ -13,6 +13,9 @@ mathjax: true
 
 在看《Python核心编程》第三版 讲述网络编程Socket的知识，在练习中采用Python 3 的代码中遇到一个与编码解码有关的坑，本文将给予详细的介绍。
 
+
+
+
 ### 软件环境
 Python: 3.6.0
 库: socket

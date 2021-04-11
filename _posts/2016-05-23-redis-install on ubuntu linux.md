@@ -11,7 +11,7 @@ mathjax: true
 * content
 {:toc}
 
-本文将介绍如何安装redis在ubuntu系统上面。
+本文将介绍如何安装Redis在ubuntu系统上面。
 
 
 
