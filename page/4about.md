@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About
+title: 关于MT
 permalink: /about/
 icon: heart
 type: page
