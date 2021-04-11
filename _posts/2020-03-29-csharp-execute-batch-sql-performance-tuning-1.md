@@ -16,7 +16,7 @@ mathjax: true
 
 
 ## 介绍
-使用ADO.NET对SQL Server进行数据存储经常被忽略的功能之一是它能够使用单个语句执行多个SQL语句SqlCommand。通常，程序分别执行语句和/或调用存储过程来执行更大的语句。当然，使用存储过程是一种首选方法，但是在某些情况下，一次调用执行多个语句是有益的。这可以使用批处理来完成，这基本上意味着一组SQL或T-SQL语句在一起。
+使用ADO.NET对SQL Server进行数据存储经常被忽略的功能之一是它能够使用单个语句执行多个SQL语句```SqlCommand```。通常，程序分别执行语句和/或调用存储过程来执行更大的语句。当然，使用存储过程是一种首选方法，但是在某些情况下，一次调用执行多个语句是有益的。这可以使用批处理来完成，这基本上意味着一组SQL或T-SQL语句在一起。
 
 ## 设置
 为了测试功能，让我们有一张数据库表。
@@ -45,7 +45,7 @@ END;
 查询初始数据
 ```sql
 SELECT * FROM MultiStatementTest;
-```
+
 id somevalue
 
 1 854
@@ -53,7 +53,7 @@ id somevalue
 3 732
 4 546
 5 267
-
+```
 ## 测试程序
 该测试程序易于使用。只需为创建测试表的数据库定义正确的连接字符串，即可开始运行测试。
 
@@ -99,14 +99,15 @@ public static bool ExecuteMultipleUpdates(string connectionString, bool generate
 因此，该CommandText属性包含将在此批处理中执行的所有语句。语句用分号分隔。
 
 执行批处理后，行已更新两次，因此表的内容类似于：
-
+```sql
 id somevalue
 1857
 2 76
 3735
 4549
 5270
-需要注意的重要一件事是，返回的受影响的行数ExecuteNonQuery为10。表中有五行，每行更新了两次，因此更新的总数为10。因此，即使有批次，也可以检查无论哪个语句进行更新，都将更新正确的行数。
+```
+需要注意的重要一件事是，返回的受影响的行数```ExecuteNonQuery```为10。表中有五行，每行更新了两次，因此更新的总数为10。因此，即使有批次，也可以检查无论哪个语句进行更新，都将更新正确的行数。
 
 ## 使用Data Reader执行两个SELECT语句
 下一个测试是执行两个不同的SELECT语句，并使用一个SqlDataReader类读取结果。方法是：
@@ -156,18 +157,18 @@ public static bool ExecuteReader(string connectionString, bool generateError = f
 }
 
 ```
-批处理中的想法是相同的，两个语句之间用分号分隔。在此示例中，将行分为两个结果集，具体取决于数字是奇数还是偶数。当ExecuteReader被调用时，第一个结果集是自动可用。该方法遍历各行并显示结果：
+批处理中的想法是相同的，两个语句之间用分号分隔。在此示例中，将行分为两个结果集，具体取决于数字是奇数还是偶数。当```ExecuteReader```被调用时，第一个结果集是自动可用。该方法遍历各行并显示结果：
 
 857
 735
 549
-为了获得下一个结果，必须指示读者使用该NextResult方法前进到下一个结果集。此后，第二组值可以再次循环通过。第二组结果：
+为了获得下一个结果，必须指示读者使用该```NextResult```方法前进到下一个结果集。此后，第二组值可以再次循环通过。第二组结果：
 
 76
 270
 
 ## 将SqlDataAdapter用于多个SELECT语句
-SqlDataReader如果要将结果存储在中，通常使用DataSet。对于下一个测试，让我们使用SqlDataAdapter 来填充数据集。代码如下：
+SqlDataReader如果要将结果存储在中，通常使用```DataSet```。对于下一个测试，让我们使用SqlDataAdapter 来填充数据集。代码如下：
 ```cs
 /// <summary>
 /// Executes two separate select statements against the the connection
@@ -212,7 +213,7 @@ public static bool ExecuteMultipleSelects(string connectionString, bool generate
 }
 
 ```
-现在，以这种方式获取数据非常容易。该代码仅调用Fill适配器的方法，并将DataSet参数作为参数传递。适配器会自动DataTable在数据集中创建两个单独的对象，然后填充它们。在我的测试场景中，第一张表包含三行，第二张表包含两行。
+现在，以这种方式获取数据非常容易。该代码仅调用Fill适配器的方法，并将```DataSet```参数作为参数传递。适配器会自动```DataTable```在数据集中创建两个单独的对象，然后填充它们。在我的测试场景中，第一张表包含三行，第二张表包含两行。
 
 由于在此示例中，表是即时创建的，因此会自动为其命名Table1，Table2因此，如果使用名称来引用表，则将名称更改为更具描述性的名称是明智的。
 
@@ -265,7 +266,7 @@ public static bool ExecuteAnonymousTSql(string connectionString, bool generateEr
 ```
 现在，在此示例中，使用了与开始创建几个测试行相同的脚本。如您所见，变量声明，循环等是包含在批处理中的完全有效的语句。
 
-运行该命令时，会将另外五行添加到表中。还要注意，由于NOCOUNT默认情况下处于关闭状态，因此该ExecuteNonQuery方法将返回正确数量的行插入到批处理中。如果NOCOUNT设置为on，则受影响的行数为-1。
+运行该命令时，会将另外五行添加到表中。还要注意，由于NOCOUNT默认情况下处于关闭状态，因此该```ExecuteNonQuery```方法将返回正确数量的行插入到批处理中。如果NOCOUNT设置为on，则受影响的行数为-1。
 
 ## 错误处理
 如果在批处理中执行单个语句时发生错误怎么办？我使用了一些语法错误来对此进行测试。该批处理将作为一个整体进行分析，因此即使以后的语句包含语法错误，该批处理也不会起作用。例如，如果UPDATE批处理中包含错误的 语句，则表的状态不会更改。
