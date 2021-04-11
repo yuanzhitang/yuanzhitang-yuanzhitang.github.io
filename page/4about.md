@@ -11,7 +11,7 @@ type: page
 
 ## 关于我
 <div style="margin:10px auto">
-<img style="border: 0;height: 100px;width: 100px; border-radius:50%" src="https://yuanzhitang.github.io/images/yuanzhitang.jpg"/>
+<img style="border: 0;height: 150px;width: 150px; border-radius:50%" src="https://yuanzhitang.github.io/images/yuanzhitang.jpg"/>
 </div>
 
 唐元志(Michael), I have 10+ years hands-on experience in software Engineering industry. Currently I am working for Unisys as a Tech Lead and focus on 
