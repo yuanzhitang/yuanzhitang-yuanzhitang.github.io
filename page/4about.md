@@ -10,8 +10,10 @@ type: page
 {:toc}
 
 ## 关于我
+唐元志(Michael), I have 10+ years hands-on experience in software Engineering industry. Currently I am working for Unisys as a Tech Lead and focus on 
+ASP.NET MVC, WebAPI, WPF,WCF,EF,LINQ etc. I am interested in TDD,Code Refactor, CI, Soft Design, Container, Kafka.
 
-I am a Developer, Good at .NET/.NETCore technology such as ASP.NET MVC,WebAPI, WPF,WCF,EF,LINQ... Love TDD,Code Refactor, CI, Soft Design, Container, Kafka
+When in part time, I'm constantly researching , thinking and practicing in Distributed System Design, including cloud computing, Big data, Cache, NoSQL, RPC and Security.
 
 <!--
 <iframe src="https://githubbadge.appspot.com/gaohaoyang?s=1" style="border: 0;height: 142px;width: 200px;overflow: hidden;" frameBorder="0"></iframe>
