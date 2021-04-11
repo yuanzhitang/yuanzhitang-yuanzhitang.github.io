@@ -13,8 +13,6 @@ mathjax: true
 
 本文是学习《Python核心编程》的学习笔记，介绍了Python中的全局解释器锁和常用的两个线程模块：thread, threading，并对比他们的优缺点和给出简单的列子。
 
-
-
 ## 全局解释器锁（GIL)
 Python代码的执行都是有Python虚拟机进行控制的。当初设计Python的时候，考虑在主循环中只能有一个控制线程在执行，就像单核CPU进行多线程编程一样。
 怎么做到这样控制的呢？就是这里的GIL来控制的，这个锁用来保证同时只有一个线程在运行。
@@ -22,6 +20,8 @@ Python代码的执行都是有Python虚拟机进行控制的。当初设计Pytho
 执行方式：
 <img width="100%" src="https://yuanzhitang.github.io/images/python-gil.png"/>
 Python 3多线程编程学习笔记-基础篇
+
+
 
 这几个细节知识点：
 
