@@ -14,6 +14,7 @@ mathjax: true
 本文介绍基础的Linux Shell命令和案例：
 
 
+
 ### cd /  : entry root directory
 ```shell
 tangym@ubuntu:/etc$ cd /
