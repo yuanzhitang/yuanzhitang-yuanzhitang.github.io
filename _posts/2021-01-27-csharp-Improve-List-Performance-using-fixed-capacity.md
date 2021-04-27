@@ -232,9 +232,38 @@ namespace ListPerformanceTest
 ```
 
 在 Release 模式下面运行测试程序，将会得到如下测试结果（不用机器测试结果数字可能不同，主要看性能差异）：
+从Mean列可以看到当元素较少(<4)时，指定Capacity并没有性能优势，但是当要添加的元素超过4之后，大约有15%左右的性能提升。
 
 ```
+|                  Method |      Mean |     Error |    StdDev |
+|------------------------ |----------:|----------:|----------:|
+|         FewElementsList |  84.09 ns |  1.618 ns |  1.662 ns |
+|    FewElementsFixedList |  94.29 ns |  2.742 ns |  7.956 ns |
+|      NormalElementsList | 199.38 ns |  5.799 ns | 17.098 ns |
+| NormalElementsFixedList | 166.27 ns |  4.813 ns | 13.887 ns |
+|       LargeElementsList | 354.74 ns | 13.096 ns | 38.613 ns |
+|  LargeElementsFixedList | 304.44 ns | 11.457 ns | 32.503 ns |
 
+// * Warnings *
+MultimodalDistribution
+  ListTest.NormalElementsList: Default      -> It seems that the distribution can have several modes (mValue = 3.12)
+  ListTest.NormalElementsFixedList: Default -> It seems that the distribution can have several modes (mValue = 2.96)
+  ListTest.LargeElementsList: Default       -> It seems that the distribution is bimodal (mValue = 3.61)
+Environment
+  Summary -> Benchmark was executed with attached debugger
+
+// * Hints *
+Outliers
+  ListTest.FewElementsList: Default         -> 2 outliers were removed (92.74 ns, 93.24 ns)
+  ListTest.FewElementsFixedList: Default    -> 3 outliers were removed (118.43 ns..123.85 ns)
+  ListTest.NormalElementsFixedList: Default -> 4 outliers were removed (211.80 ns..263.95 ns)
+  ListTest.LargeElementsFixedList: Default  -> 7 outliers were removed (411.32 ns..498.23 ns)
+
+// * Legends *
+  Mean   : Arithmetic mean of all measurements
+  Error  : Half of 99.9% confidence interval
+  StdDev : Standard deviation of all measurements
+  1 ns   : 1 Nanosecond (0.000000001 sec)
 ```
 
 ## 结论
