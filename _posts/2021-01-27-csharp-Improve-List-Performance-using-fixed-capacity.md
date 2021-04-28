@@ -273,5 +273,5 @@ Outliers
 - 可以通过调用 `TrimExcess` 方法或显式设置 `capacity` 属性来减少容量。减少容量重新分配内存并复制 `List<T>`中的所有元素。
 
 参考资料：
-[MSDN List<T>(Int32)](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.-ctor?view=net-5.0#System_Collections_Generic_List_1__ctor_System_Int32_)
+[MSDN List](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.-ctor?view=net-5.0#System_Collections_Generic_List_1__ctor_System_Int32_)
 [BenchmarkDotNet](https://benchmarkdotnet.org/)
