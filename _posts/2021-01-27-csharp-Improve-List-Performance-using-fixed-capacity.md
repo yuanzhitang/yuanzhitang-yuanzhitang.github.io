@@ -11,7 +11,7 @@ mathjax: true
 - content
   {:toc}
 
-C# List 类型默认的初始容量是 4，如果随着元素的增加，List 内存是采用翻倍的方式去增加系统的容量，这样则会倒是内存需要进行 Resizing，那么如果可以预期到最大的容量需求，如何避免 Resizing 带来的性能损耗呢？
+C# List 类型默认的初始容量是 4，如果随着元素的增加，List 内存是采用翻倍的方式去增加系统的容量，这样则会导致内存需要进行 Resizing，那么如果可以预期到最大的容量需求，如何避免 Resizing 带来的性能损耗呢？
 
 本文主要涵一下几个方面：
 
@@ -24,7 +24,7 @@ C# List 类型默认的初始容量是 4，如果随着元素的增加，List �
 
 ## List 自动扩容
 
-C# `List` 是一个范型集合，可以存储大量的对象在内存中，默认创建一个 `List` 对象并不会分配空间，一旦添加第一个元素时，List 第一次将扩分配空间为 4 的容量，如果持续添加元素之集合中，则会分配 8，接着是 16，这样成倍的增减。这个过程叫做 Resizing。`List` 的属性 `Capacity` 可以看到当前 `List` 对象的空间。
+C# `List` 是一个范型集合，可以存储大量的对象在内存中，默认创建一个 `List` 对象并不会分配空间，一旦添加第一个元素时，List 第一次将会分配空间为 4 的容量，如果持续添加元素之集合中，则会分配 8，接着是 16，这样成倍的增加。这个过程叫做 Resizing。`List` 的属性 `Capacity` 可以看到当前 `List` 对象的空间。
 
 ```cs
 static void Main(string[] args)
@@ -103,7 +103,7 @@ var list = new List<string>(26).
 
 ## 比较默认和指定初始容量（Initial Capacity)的性能差异
 
-频繁的进行 Resizing 将会对性能造成一定的损耗，下面对比了往 List 中添加少量元素和大量元素时，指定 Capacity 和不指定的性能差异。性能的对比是采用了 Benchmark.NET.
+频繁的进行 Resizing 将会对性能造成一定的损耗，下面对比了往 List 中添加不同数量的元素时，指定 Capacity 和不指定的性能差异。性能的对比是采用了 Benchmark.NET.
 
 六个测试方法分别是：
 
@@ -210,7 +210,7 @@ namespace ListPerformanceTest
 
 ```
 
-Program.cs 调用 BenchmarkRunner.Run<ListTest>();去对比测量前面的四个方法
+Program.cs 调用 BenchmarkRunner.Run<ListTest>();去对比测量前面的6个方法
 
 ```cs
 using BenchmarkDotNet.Running;
