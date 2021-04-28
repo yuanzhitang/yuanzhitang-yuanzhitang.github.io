@@ -8,8 +8,8 @@ author: Michael
 mathjax: true
 ---
 
-- content
-  {:toc}
+* content
+{:toc}
 
 C# List 类型默认的初始容量是 4，如果随着元素的增加，List 内存是采用翻倍的方式去增加系统的容量，这样则会导致内存需要进行 Resizing，那么如果可以预期到最大的容量需求，如何避免 Resizing 带来的性能损耗呢？
 
