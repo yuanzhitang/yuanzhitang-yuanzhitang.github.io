@@ -18,64 +18,64 @@ mathjax: true
 比如这个例子，一个 `Message`, 他的 `Header` 是一个接口，同时 `Message` 自己也是一个抽象类，它有两个子类分别是 `HttpMessage` 和 `RpcMessage`.
 
 ```cs
-	public class Message
-	{
-		public IMessageHeader Header { get; set; }
+public class Message
+{
+	public IMessageHeader Header { get; set; }
 
-		public object Body { get; set; }
+	public object Body { get; set; }
 
-		public Message()
-		{
-
-		}
-	}
-
-	public class HttpMessage : Message
+	public Message()
 	{
 
 	}
+}
 
-	public class RpcMessage : Message
-	{
+public class HttpMessage : Message
+{
 
-	}
+}
+
+public class RpcMessage : Message
+{
+
+}
 ```
 
 `Header` 又分为 `HttpHeader` 和 `RpcHeader`：
 
 ```cs
-	public interface IMessageHeader
-	{
-		string Name { get; set; }
-	}
+public interface IMessageHeader
+{
+	string Name { get; set; }
+}
 
-	public class HttpHeader : IMessageHeader
-	{
-		public string Name { get; set; } = "Http";
-	}
+public class HttpHeader : IMessageHeader
+{
+	public string Name { get; set; } = "Http";
+}
 
-	public class RpcHeader : IMessageHeader
-	{
-		public string Name { get; set; } = "Rpc";
-	}
+public class RpcHeader : IMessageHeader
+{
+	public string Name { get; set; } = "Rpc";
+}
 ```
 
 下面我们来创建一些 `Message`。
 
 ```cs
-			var messageList = new List<Message>
-			{
-				new HttpMessage()
-				{
-					Header = new HttpHeader(),
-					Body = new byte[] { 1, 2, 3 }
-				},
-				new RpcMessage()
-				{
-					Header = new RpcHeader(),
-					Body = new byte[] { 4, 5, 6 }
-				}
-			};
+	var messageList = new List<Message>
+	{
+		new HttpMessage()
+		{
+			Header = new HttpHeader(),
+			Body = new byte[] { 1, 2, 3 }
+		},
+		new RpcMessage()
+		{
+			Header = new RpcHeader(),
+			Body = new byte[] { 4, 5, 6 }
+		}
+	};
 ```
 
 采用默认的对象去序列化这个 `messageList`。
