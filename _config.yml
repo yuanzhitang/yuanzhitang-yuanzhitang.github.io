@@ -28,7 +28,7 @@ description_footer: 享受编码的乐趣，技术成就梦想！
 # comments
 # two ways to comment, only choose one, and use your own short name
 # 两种评论插件，选一个就好了，使用自己的 short_name
-duoshuo_shortname: #tyzblog
+# duoshuo_shortname: #tyzblog
 disqus_shortname: yuanzhitang
 
 # statistic analysis 统计代码
