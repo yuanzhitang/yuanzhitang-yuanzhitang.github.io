@@ -59,10 +59,10 @@ static void Main(string[] args)
 
 比如：现在有10个对象，其中对象2，3，5，6和10拥有Finalize方法，整个GC将经过如下几个阶段
 - 初始
-<img width="100%" src="https://yuanzhitang.github.io/images/gc-workflow-init.png"/>
+<img width="100%" src="https://yuanzhitang.github.io/images/gc-sample-init.png"/>
 - 标记
-<img width="100%" src="https://yuanzhitang.github.io/images/gc-workflow-mark.png"/>
+<img width="100%" src="https://yuanzhitang.github.io/images/gc-sample-mark.png"/>
 - 清理
-<img width="100%" src="https://yuanzhitang.github.io/images/gc-workflow-sweep.png"/>
+<img width="100%" src="https://yuanzhitang.github.io/images/gc-sample-sweep.png"/>
 - 压缩
-<img width="100%" src="https://yuanzhitang.github.io/images/gc-workflow-compact.png"/>
+<img width="100%" src="https://yuanzhitang.github.io/images/gc-sample-compact.png"/>
