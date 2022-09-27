@@ -30,7 +30,7 @@ mathjax: true
   备注:
   最初，Gen0为256KB, Gen1为2MB, Gen2为10MB
   用于>=85000字节的对象的大对象堆(LOH)，可以采用` GC.GetGeneration (obj)`去获取当前对象存活于哪一个Gen。
-比如下面的代码，将会输出 0 0 2 0
+  比如下面的代码，将会输出 0 0 2 0
 ```cs
 public class LargeObjectExample
 {
@@ -51,5 +51,6 @@ static void Main(string[] args)
 
 	Console.ReadKey();
 }
+```
 
 
