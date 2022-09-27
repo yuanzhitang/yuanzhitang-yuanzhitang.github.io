@@ -25,208 +25,31 @@ mathjax: true
 - 非托管堆
   非托管代码将在非托管堆或堆栈上分配对象。托管代码还可以通过调用Win32 api在非托管堆上分配对象。
 - 托管堆(Managed Heap)
-  托管代码在托管堆上分配对象，而GC负责管理托管堆。GC还维护一个大对象堆，以补偿在内存中移动大对象的成本。
+  托管代码在托管堆上分配对象，而GC负责管理托管堆, 总共有三个代(Generation)，分别为Gen0, Gen1和Gen2。GC还维护一个大对象堆，以补偿在内存中移动大对象的成本。
   <img width="100%" src="https://yuanzhitang.github.io/images/heap.png"/>
+  备注:
+  最初，Gen0为256KB, Gen1为2MB, Gen2为10MB
+  用于>=85000字节的对象的大对象堆(LOH)，可以采用` GC.GetGeneration (obj)`去获取当前对象存活于哪一个Gen。
+比如下面的代码，将会输出 0 0 2 0
 ```cs
-public class Message
+public class LargeObjectExample
 {
-	public IMessageHeader Header { get; set; }
-
-	public object Body { get; set; }
-
-	public Message()
-	{
-
-	}
+	public string NormalString { get; set; } = "Example";
+	public byte[] ByteArray85000 = new byte[85000];
+	public byte[] ByteArray80000 = new byte[80000];
 }
 
-public class HttpMessage : Message
-{
 
+static void Main(string[] args)
+{
+	var largeObj = new LargeObjectExample();
+
+	Console.WriteLine(GC.GetGeneration(largeObj));
+	Console.WriteLine(GC.GetGeneration(largeObj.NormalString));
+	Console.WriteLine(GC.GetGeneration(largeObj.ByteArray85000));
+	Console.WriteLine(GC.GetGeneration(largeObj.ByteArray80000));
+
+	Console.ReadKey();
 }
 
-public class RpcMessage : Message
-{
 
-}
-```
-
-`Header` 又分为 `HttpHeader` 和 `RpcHeader`：
-
-```cs
-public interface IMessageHeader
-{
-	string Name { get; set; }
-}
-
-public class HttpHeader : IMessageHeader
-{
-	public string Name { get; set; } = "Http";
-}
-
-public class RpcHeader : IMessageHeader
-{
-	public string Name { get; set; } = "Rpc";
-}
-```
-
-下面我们来创建一些 `Message`。
-
-```cs
-	var messageList = new List<Message>
-	{
-		new HttpMessage()
-		{
-			Header = new HttpHeader(),
-			Body = new byte[] { 1, 2, 3 }
-		},
-		new RpcMessage()
-		{
-			Header = new RpcHeader(),
-			Body = new byte[] { 4, 5, 6 }
-		}
-	};
-```
-
-采用默认的对象去序列化这个 `messageList`。
-
-```cs
-	var jsonString = JsonConvert.SerializeObject(messageList);
-```
-
-产生的 JSON 数据将会如下。
-
-```json
-[
-  { "Header": { "Name": "Http" }, "Body": "AQID" },
-  { "Header": { "Name": "Rpc" }, "Body": "BAUG" }
-]
-```
-
-但是当我们将 Json 反序列化为原始对象时
-
-```cs
-	var messages = JsonConvert.DeserializeObject<List<Message>>(jsonString);
-```
-
-将会遇到如下错误
-
-```
-Newtonsoft.Json.JsonSerializationException: 'Could not create an instance of type JSON_DEMO.IMessageHeader. Type is an interface or abstract class and cannot be instantiated. Path '[0].Header.Name', line 1, position 19.'
-```
-
-主要原因是 JSON.NET 本身并不知道它应该发序列化为哪一个具体的子类，为了解决这个问题，如果我们可以在序列化对象时，将子类的信息同时序列化到 Json 数据中，那么反序列化回对象时，就可以知道具体应该反序列化成哪一个具体的子类。
-
-JSON.NET 提供了一个解决方案，在序列化和反序列化时，指定如下的设置。
-
-```cs
-	JsonSerializerSettings settings = new JsonSerializerSettings
-	{
-		TypeNameHandling = TypeNameHandling.Auto
-	};
-```
-
-当序列化对象时，指定这个 `settings`
-
-```cs
-var jsonString = JsonConvert.SerializeObject(messageList, settings);
-```
-
-现在我们将会得到如下的 Json
-
-```json
-[
-  {
-    "$type": "JSON_DEMO.HttpMessage, JSON_DEMO",
-    "Header": { "$type": "JSON_DEMO.HttpHeader, JSON_DEMO", "Name": "Http" },
-    "Body": { "$type": "System.Byte[], mscorlib", "$value": "AQID" }
-  },
-  {
-    "$type": "JSON_DEMO.RpcMessage, JSON_DEMO",
-    "Header": { "$type": "JSON_DEMO.RpcHeader, JSON_DEMO", "Name": "Rpc" },
-    "Body": { "$type": "System.Byte[], mscorlib", "$value": "BAUG" }
-  }
-]
-```
-
-当我们反序列化这个 Json 成 `List<Message>`是，将可以得到原始的对象。
-
-```cs
-var messages = JsonConvert.DeserializeObject<List<Message>>(jsonString, settings);
-```
-
-## 完整代码
-
-```cs
-using Newtonsoft.Json;
-using System.Collections.Generic;
-
-namespace JSON_DEMO
-{
-	class Program
-	{
-		static void Main(string[] args)
-		{
-			var messageList = new List<Message>
-			{
-				new HttpMessage()
-				{
-					Header = new HttpHeader(),
-					Body = new byte[] { 1, 2, 3 }
-				},
-				new RpcMessage()
-				{
-					Header = new RpcHeader(),
-					Body = new byte[] { 4, 5, 6 }
-				}
-			};
-
-			JsonSerializerSettings settings = new JsonSerializerSettings
-			{
-				TypeNameHandling = TypeNameHandling.Auto
-			};
-
-			var jsonString = JsonConvert.SerializeObject(messageList, settings);
-			var messages = JsonConvert.DeserializeObject<List<Message>>(jsonString, settings);
-		}
-	}
-
-	public class Message
-	{
-		public IMessageHeader Header { get; set; }
-
-		public object Body { get; set; }
-
-		public Message()
-		{
-
-		}
-	}
-
-	public class HttpMessage : Message
-	{
-
-	}
-
-	public class RpcMessage : Message
-	{
-
-	}
-
-	public interface IMessageHeader
-	{
-		string Name { get; set; }
-	}
-
-	public class HttpHeader : IMessageHeader
-	{
-		public string Name { get; set; } = "Http";
-	}
-
-	public class RpcHeader : IMessageHeader
-	{
-		public string Name { get; set; } = "Rpc";
-	}
-}
-
-```
