@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ".NET 内存管理"
+title: ".NET 内存管理原理讲解"
 date: 2022-08-10 10:25:19
 categories: .NET
 tags: C# .NET GC
