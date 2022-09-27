@@ -14,10 +14,11 @@ mathjax: true
 .NET CLR 管理了应用程序占用内存的分配和释放，开发人员在开发托管的应用程序是就不用在开发代码去管理内了。针对内存的管理依赖于垃圾回收机制（Garbage Collection)，分为 标记(`Full Mark`) -> 回收(`Sweep`) -> 压缩(`Compact`）三个阶段，不在使用引用计数的方式了，类似采用GC机制的还有像Java,Node JS, Go 等编程语言。
 
 <img width="100%" src="https://yuanzhitang.github.io/images/MemoryUsedByAProcess.png"/>
+
+
+
 一个进程占用的内存主要分为Allocated Space、Free、Committed和Reserved。而在.NET应用程序中，在应用程序内转成原生的机器码之前，将由C#编译器先将原始代码和相关的资源与引用编译成托管应用程序集，之后交由CLR进行管理和相关的内存管理。
 <img width="100%" src="https://yuanzhitang.github.io/images/managed-code-clr.png"/>
-
-
 
 ### Stack 和 Heap
 .NET主要使用了堆栈、非托管堆和托管堆
