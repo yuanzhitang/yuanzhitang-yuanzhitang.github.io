@@ -16,8 +16,17 @@ mathjax: true
 <img width="100%" src="https://yuanzhitang.github.io/images/MemoryUsedByAProcess.png"/>
 一个进程占用的内存主要分为Allocated Space、Free、Committed和Reserved。而在.NET应用程序中，在应用程序内转成原生的机器码之前，将由C#编译器先将原始代码和相关的资源与引用编译成托管应用程序集，之后交由CLR进行管理和相关的内存管理。
 <img width="100%" src="https://yuanzhitang.github.io/images/managed-code-clr.png"/>
-比如这个例子，一个 `Message`, 他的 `Header` 是一个接口，同时 `Message` 自己也是一个抽象类，它有两个子类分别是 `HttpMessage` 和 `RpcMessage`.
 
+### Stack 和 Heap
+.NET主要使用了堆栈、非托管堆和托管堆
+- 堆栈(Stack)
+  它是按每个线程管理的，用于存储局部变量、方法参数和临时值。当方法返回时，GC不会自动清理堆栈。对对象的引用存储在堆栈上，但实际对象在堆上分配，GC知道这一点。当GC无法找到对象的引用时，它将从堆中删除该对象。
+  <img width="100%" src="https://yuanzhitang.github.io/images/stack.png"/>
+- 非托管堆
+  非托管代码将在非托管堆或堆栈上分配对象。托管代码还可以通过调用Win32 api在非托管堆上分配对象。
+- 托管堆(Managed Heap)
+  托管代码在托管堆上分配对象，而GC负责管理托管堆。GC还维护一个大对象堆，以补偿在内存中移动大对象的成本。
+  <img width="100%" src="https://yuanzhitang.github.io/images/heap.png"/>
 ```cs
 public class Message
 {
