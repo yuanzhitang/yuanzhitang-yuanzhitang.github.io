@@ -13,9 +13,9 @@ mathjax: true
 
 当你的对象中的一个属性（`Property`）是一个接口，这个接口有几个实现的具体类时，如果采用 JSON.NET 进行简单快速的序列化和反序列化呢?
 
-
-
 比如这个例子，一个 `Message`, 他的 `Header` 是一个接口，同时 `Message` 自己也是一个抽象类，它有两个子类分别是 `HttpMessage` 和 `RpcMessage`.
+
+
 
 ```cs
 public class Message

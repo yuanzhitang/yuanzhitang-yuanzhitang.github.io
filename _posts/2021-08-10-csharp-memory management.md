@@ -17,6 +17,8 @@ mathjax: true
 一个进程占用的内存主要分为Allocated Space、Free、Committed和Reserved。而在.NET应用程序中，在应用程序内转成原生的机器码之前，将由C#编译器先将原始代码和相关的资源与引用编译成托管应用程序集，之后交由CLR进行管理和相关的内存管理。
 <img width="100%" src="https://yuanzhitang.github.io/images/managed-code-clr.png"/>
 
+
+
 ### Stack 和 Heap
 .NET主要使用了堆栈、非托管堆和托管堆
 - 堆栈(Stack)
