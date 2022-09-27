@@ -52,5 +52,8 @@ static void Main(string[] args)
 	Console.ReadKey();
 }
 ```
+### 垃圾回收
+对象的分配与回收流程是：当创建一个新对象是，对象将分配值Gen0，如果Gen0剩余空间不够，那么对将Gen0进行内存回收，Gen0上所在对象将会移至Gen1，如果此时Gen1剩余空间不够存放来自于Gen0的对象，那么将对Gen1进行垃圾回收，将Gen1的对象移动至Gen2。如果此时Gen2剩余空间也不够，那么将会对Gen2进行回收，这个又称为Full GC, 同时也会对大对象进行回收. 
+<img width="100%" src="https://yuanzhitang.github.io/images/gc-workflow.png"/>
 
 
