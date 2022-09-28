@@ -15,49 +15,30 @@ C#中类型主要分为引用类型和值类型，通常情况下值类型分配
 
 下图列出了C#中的值类型和引用类型。如果想知道一个变量是值类型还是引用类型，可以采用`variable.GetType().IsValueType`去检测。
 
+
+
+
 <img width="100%" src="https://yuanzhitang.github.io/images/csharp-types.png"/>
 
 
 
-一个进程占用的内存主要分为Allocated Space、Free、Committed和Reserved。而在.NET应用程序中，在应用程序内转成原生的机器码之前，将由C#编译器先将原始代码和相关的资源与引用编译成托管应用程序集，之后交由CLR进行管理和相关的内存管理。
-<img width="100%" src="https://yuanzhitang.github.io/images/csharp-types.png"/>
+下面通过几个小例子演示内存的分配
+### Int
+Int类型占用内存根据所在的作用域进行出栈和入栈。比如下面的代码。num1先行拿到值10位于stack上，之后因为跳出作用域，值10将会进行出栈，之后一次分配20，30给num2和num3。此时在尝试访问num1是不行的，因为值10已经出栈不存在了
+<img width="100%" src="https://yuanzhitang.github.io/images/memory-alloc-int.png"/>
 
-### Stack 和 Heap
-.NET主要使用了堆栈、非托管堆和托管堆
-- 堆栈(Stack)
-  它是按每个线程管理的，用于存储局部变量、方法参数和临时值。当方法返回时，GC不会自动清理堆栈。对对象的引用存储在堆栈上，但实际对象在堆上分配，GC知道这一点。当GC无法找到对象的引用时，它将从堆中删除该对象。
-  <img width="100%" src="https://yuanzhitang.github.io/images/stack.png"/>
-- 非托管堆
-  非托管代码将在非托管堆或堆栈上分配对象。托管代码还可以通过调用Win32 api在非托管堆上分配对象。
-- 托管堆(Managed Heap)
-  托管代码在托管堆上分配对象，而GC负责管理托管堆, 总共有三个代(Generation)，分别为Gen0, Gen1和Gen2。GC还维护一个大对象堆，以补偿在内存中移动大对象的成本。
-  <img width="100%" src="https://yuanzhitang.github.io/images/heap.png"/>
-  备注:
-  最初，Gen0为256KB, Gen1为2MB, Gen2为10MB
-  用于>=85000字节的对象的大对象堆(LOH)，可以采用` GC.GetGeneration (obj)`去获取当前对象存活于哪一个Gen。
-- 举个列子，比如下面的代码，将会输出 0 0 2 0
-
+在看下面这个代码
 ```cs
-public class LargeObjectExample
-{
-	public string NormalString { get; set; } = "Example";
-	public byte[] ByteArray85000 = new byte[85000];
-	public byte[] ByteArray80000 = new byte[80000];
-}
+int num = 10;
 
+int secNum = num;
 
-static void Main(string[] args)
-{
-	var largeObj = new LargeObjectExample();
+secNum = 20;
 
-	Console.WriteLine(GC.GetGeneration(largeObj));
-	Console.WriteLine(GC.GetGeneration(largeObj.NormalString));
-	Console.WriteLine(GC.GetGeneration(largeObj.ByteArray85000));
-	Console.WriteLine(GC.GetGeneration(largeObj.ByteArray80000));
+Console.WriteLine($"{num},{secNum}");
 
-	Console.ReadKey();
-}
 ```
+首先分配10给num，这个时候将num赋值给secNum时，其实是将值复制了一份给secNum，也就是说在stack中，有两个10。 如果此时将secNum修改为20，并不会影响到num。所有最后的输出是 ```cs 10,20```
 ### 垃圾回收
 对象的分配与回收流程是：当创建一个新对象是，对象将分配值Gen0，如果Gen0剩余空间不够，那么对将Gen0进行内存回收，Gen0上所在对象将会移至Gen1，如果此时Gen1剩余空间不够存放来自于Gen0的对象，那么将对Gen1进行垃圾回收，将Gen1的对象移动至Gen2。如果此时Gen2剩余空间也不够，那么将会对Gen2进行回收，这个又称为Full GC, 同时也会对大对象进行回收. 
 <img width="100%" src="https://yuanzhitang.github.io/images/gc-workflow.png"/>
