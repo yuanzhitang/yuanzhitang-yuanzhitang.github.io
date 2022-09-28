@@ -1,9 +1,9 @@
 ---
 layout: post
-title: ".NET 内存管理原理篇"
-date: 2022-08-10 10:25:19
+title: ".NET 内存分配实例篇"
+date: 2022-08-21 14:24:51
 categories: .NET
-tags: C# .NET GC Heap Memory
+tags: C# .NET GC Stack Heap
 author: Michael
 mathjax: true
 ---
@@ -11,14 +11,16 @@ mathjax: true
 * content
 {:toc}
 
-.NET CLR 管理了应用程序占用内存的分配和释放，开发人员在开发托管的应用程序是就不用在开发代码去管理内存了。针对内存的管理依赖于垃圾回收机制（Garbage Collection)，分为 标记(`Full Mark`) -> 回收(`Sweep`) -> 压缩(`Compact`）三个阶段，不在使用引用计数的方式了，类似采用GC机制的还有像Java,Node JS, Go 等编程语言。
+C#中类型主要分为引用类型和值类型，通常情况下值类型分配在堆栈（Stack）上，而引用类型则分配在托管堆(Heap）上。
 
-<img width="100%" src="https://yuanzhitang.github.io/images/MemoryUsedByAProcess.png"/>
+下图列出了C#中的值类型和引用类型。如果想知道一个变量是值类型还是引用类型，可以采用`variable.GetType().IsValueType`去检测。
+
+<img width="100%" src="https://yuanzhitang.github.io/images/csharp-types.png"/>
 
 
 
 一个进程占用的内存主要分为Allocated Space、Free、Committed和Reserved。而在.NET应用程序中，在应用程序内转成原生的机器码之前，将由C#编译器先将原始代码和相关的资源与引用编译成托管应用程序集，之后交由CLR进行管理和相关的内存管理。
-<img width="100%" src="https://yuanzhitang.github.io/images/managed-code-clr.png"/>
+<img width="100%" src="https://yuanzhitang.github.io/images/csharp-types.png"/>
 
 ### Stack 和 Heap
 .NET主要使用了堆栈、非托管堆和托管堆
