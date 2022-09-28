@@ -3,7 +3,7 @@ layout: post
 title: ".NET 内存管理原理"
 date: 2022-08-10 10:25:19
 categories: .NET
-tags: C# .NET GC
+tags: C# .NET GC Heap Memory
 author: Michael
 mathjax: true
 ---
