@@ -51,4 +51,58 @@ Array值存处在Heap上，在Stack上存储了执行Heap的地址信息。
 100, 5
 ```
 数组的传递其实是引用传递，所以当调用ChangeArray去修改数组的值时，Heap上面的将从2变成了5。
-同理将第一个数组赋值给第二个数组，当修改了第二个数组的值时，也会影响到第一个数组的实际值，因为他们的值时同一份。
+同理将第一个数组赋值给第二个数组，当修改了第二个数组的值时，也会影响到第一个数组的实际值，因为他们的值是同一份。
+
+### List
+List内部实现采用的是数组，初始容量是4.
+比如：这个list初始化存储1，2，3，4
+```cs
+var list = new List<int> { 1, 2, 3, 4 };
+```
+如果此时调用list.Add方法添加5，6
+```cs
+list.Add(5);
+list.Add(6);
+```
+因为list初始容量4已经被用完，这个时候List内部数组将会从堆上进行Resize，新的容量是8，从而可以放得下5和6
+如果想避免进行Reszie，同时预支将会需要多大容量，可以在New List时就指定容量。
+```cs
+int expectedLength = 6;
+
+var list = new List<int>(expectedLength) { 1, 2, 3, 4 };
+
+list.Add(5);
+list.Add(6);
+```
+
+### string
+字符串是一种特别的引用类型，拥有同样的字符串值的变量其实是指向同一块Heap区域。
+如果对字符串进行更改，那么新字符串值时重新分配的，不会更改原来字符串的值，也就是常说的immutable.
+看下面这个代码
+```
+string str = "100";
+
+string str2 = str;
+
+Console.WriteLine(ReferenceEquals(str, str2));
+
+str2 = "200";
+Console.WriteLine(ReferenceEquals(str, str2));
+Console.WriteLine($"{str},{str2}");
+
+
+string strA = "A";
+string strB = "B";
+Console.WriteLine(ReferenceEquals(strA, strB));
+
+strB = "A";
+Console.WriteLine(ReferenceEquals(strA, strB));
+```
+将会依次输出：
+```cs
+true    //同一个引用
+false   //str2被修改为200，是一份新地址
+100,200 //
+false   //字符串值不一样，不同地址
+true    //字符串值变回A，又重新指向Heap上值为A的空间
+```
