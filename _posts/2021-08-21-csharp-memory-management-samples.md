@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ".NET 内存分配实例篇"
-date: 2022-08-21 14:24:51
+date: 2021-08-21 14:24:51
 categories: .NET
 tags: C# .NET GC Stack Heap
 author: Michael

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ".NET 内存管理原理篇"
-date: 2022-08-10 10:25:19
+date: 2021-08-10 10:25:19
 categories: .NET
 tags: C# .NET GC Heap Memory
 author: Michael
