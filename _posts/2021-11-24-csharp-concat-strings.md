@@ -14,7 +14,7 @@ mathjax: true
 字符串拼接是一个非常常见的需求，目前C#中也是支持多种方式进行字符串拼接。
 
 常见的方式有：
-- + 号连接多个字符串
+- 用+号
 - string.concat
 - StringBuilder
 - $"{string}"
@@ -91,7 +91,7 @@ static void Main(string[] args)
 }
 
 ```
-运行结果如下：从图中可以看到采用 +, string.concat 和 $ 差异不大，采用StringBuild反而更慢。
+运行结果如下：从图中可以看到采用 +, string.concat 和 $ 差异不大，采用StringBuilder反而更慢。
 <img width="100%" src="https://yuanzhitang.github.io/images/compare-concat-two-strings.png"/>
 
 ### 拼接多个字符串
@@ -170,7 +170,7 @@ static void Main(string[] args)
 
 ```
 运行结果如下：
-<img width="100%" src="https://yuanzhitang.github.io/images/compare-concat-multiple-strings.png.png"/>
+<img width="100%" src="https://yuanzhitang.github.io/images/compare-concat-multiple-strings.png"/>
 
 结论：
 - 如果对小数量的字符串进行拼接， +, string.concat性能更好。
