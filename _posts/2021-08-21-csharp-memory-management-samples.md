@@ -106,3 +106,17 @@ false   //str2被修改为200，是一份新地址
 false   //字符串值不一样，不同地址
 true    //字符串值变回A，又重新指向Heap上值为A的空间
 ```
+
+### 值类型值存储在栈(Stack)上吗？
+前面我们提到值类型一般存储在栈上，但是也不是一定这样，一个特例就是值类型变量在引用类型class内部，那么其实它是随class一起分配到Heap上的。
+```cs
+public  class  ReferenceTypeClass
+{    
+	private  int  _valueTypeField;   
+	public  ReferenceTypeClass()  
+	{       
+		_valueTypeField  =   0 ;   
+	}
+}
+
+```
