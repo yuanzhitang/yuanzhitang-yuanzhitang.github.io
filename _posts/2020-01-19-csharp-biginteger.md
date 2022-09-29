@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "C# BigInteger 处理超大整型数字"
-date:   2018-01-19 22:46:17
+date:   2020-01-19 22:46:17
 categories: .NET
 tags: C#
 author: Michael

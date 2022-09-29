@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "验证xml是否符合指定xsd"
-date:   2018-01-23 23:23:17
+date:   2019-01-23 23:23:17
 categories: .NET
 tags: C# XSD XML
 author: Michael
