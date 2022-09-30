@@ -20,152 +20,115 @@ mathjax: true
 
 
 
-### 拼接两个字符串
-如果只是对两个字符串进行拼接，比如将"Hello" 和 "World" 拼接成 "HelloWorld"，下面采用BenchMark.NET对这些方式进行对比，看看性能差异如何.
+### 类中没有非托管资源
+针对类中没有非托管资源，那么类中不需要定义终结器。下面是推荐的模板代码：
+类中定义私有变量记录是否已经disposed，调用Dispose()方法去释放资源后，将_disposed标记为true。
+如果此时从他处再次调用Dispose(),因为_disposed已经为true，在Dispose(bool)方法中将直接返回。
+
 ```cs
-[MemoryDiagnoser]
-public class ConcatTwoStringsBenchmarks
+class BaseClassWithoutFinalizer : IDisposable
 {
-	private string Hello = "Hello";
-	private string World = "World";
+	// To detect redundant calls
+	private bool _disposed = false;
 
-	[Benchmark]
-	public string Orginal()
+	// Public implementation of Dispose pattern callable by consumers.
+	public void Dispose()
 	{
-		return Hello + World;
+		Dispose(true);
 	}
 
-	[Benchmark]
-	public string Concat()
+	// Protected implementation of Dispose pattern.
+	protected virtual void Dispose(bool disposing)
 	{
-		return string.Concat(Hello, World);
+		if (_disposed)
+		{
+			return;
+		}
+
+		if (disposing)
+		{
+			// TODO: dispose managed state (managed objects).
+		}
+
+		_disposed = true;
 	}
-
-	[Benchmark]
-	public string StringBuilder()
-	{
-		var stringBuilder = new StringBuilder();
-		stringBuilder.Append(Hello);
-		stringBuilder.Append(World);
-		return stringBuilder.ToString();
-	}
-
-	[Benchmark]
-	public string StringBuilderFixedLength()
-	{
-		var stringBuilder = new StringBuilder(Hello.Length+World.Length);
-
-		stringBuilder.Append(Hello);
-		stringBuilder.Append(World);
-		return stringBuilder.ToString();
-	}
-
-	[Benchmark]
-	public string Dollar()
-	{
-		return $"{Hello}{World}";
-	}
-
-	[Benchmark]
-	public string StringFormat()
-	{
-		return string.Format("{0}{1}", Hello, World);
-	}
-
-	[Benchmark]
-	public string Join()
-	{
-		return string.Join("", new string[] { Hello, World });
-	}
-}
-
-static void Main(string[] args)
-{
-    BenchmarkRunner.Run<ConcatTwoStringsBenchmarks>();
 }
 
 ```
-运行结果如下：从图中可以看到采用 +, string.concat 和 $ 差异不大，采用StringBuilder反而更慢。
-<img width="100%" src="https://yuanzhitang.github.io/images/compare-concat-two-strings.png"/>
 
-### 拼接多个字符串
-依然采用Benchmark.NET，这次让程序依次拼接2, 5，50和100个字符串，看看性能差异如何.
+### 释放非托管资源
+例子中假定使用了非托管资源ptr, 下面是推荐的dispose模板代码：
+首先实现IDisposable接口，同事定义一个protected virtual Dispose(bool)方法。同时定义~BaseClassWithFinalizer() 终结器。
+
+在Dispose方法中调用Dispose(true), 这里的true表示确定性释放资源，也就是可以释放托管和非托管资源。资源释放后，使垃圾回收器不再需要调用对象的 Object.Finalize 方法。 因此，调用 SuppressFinalize 方法去阻止垃圾回收器运行终结器。 如果类型没有终结器，则对 GC.SuppressFinalize 的调用不起作用。 
+
+在终结器中，调用Dispose(false)去释放非托管资源。这里主要是为了当人为忘记调用Dispose方法后，程序依然可以安全的释放非托管资源。
 ```cs
-[MemoryDiagnoser]
-public class ConcatMultiStringsBenchmarks
+class BaseClassWithFinalizer : IDisposable
 {
-	private string[] _myArray;
-	
-	[Params(2, 5, 50, 100)]
-	public int Size { get; set; }
-	
-	public int Capacity { get; set; }
-	
-	[GlobalSetup]
-	public void Setup()
+	// To detect redundant calls
+	private bool _disposed = false;
+	private IntPtr ptr = Marshal.AllocHGlobal(2);
+
+	~BaseClassWithFinalizer() => Dispose(false);
+
+	// Public implementation of Dispose pattern callable by consumers.
+	public void Dispose()
 	{
-		_myArray = new string[Size];
-		Capacity = 0;
-		for (var i = 0; i < Size; i++)
-		{
-		var str = i.ToString();
-		_myArray[i] = str;
-		Capacity += str.Length;
-		}
-	}
-	[Benchmark(Baseline = true)]
-	public string Original()
-	{
-		var str = string.Empty;
-		for (int i = 0; i < _myArray.Length; i++)
-		{
-			str += _myArray[i];
-		}
-		return str;
+		Dispose(true);
+		GC.SuppressFinalize(this);
 	}
 
-	[Benchmark]
-	public string Concat()
+	// Protected implementation of Dispose pattern.
+	protected virtual void Dispose(bool disposing)
 	{
-		var str = string.Empty;
-		for (int i = 0; i < _myArray.Length; i++)
+		if (_disposed)
 		{
-			str = string.Concat(str, _myArray[i]);
+		return;
 		}
-		return str;
-	}
-	[Benchmark]
-	public string StringBuilder()
-	{
-		var stringBuilder = new StringBuilder();
-		for (int i = 0; i < _myArray.Length; i++)
-		{
-			stringBuilder.Append(_myArray[i]);
-		}
-		return stringBuilder.ToString();
-	}
-	[Benchmark]
-	public string StringBuilderFixedLength()
-	{
-		var stringBuilder = new StringBuilder(Capacity);
-	…
-	}
-	[Benchmark]
-	public string Join()
-	{
-		return string.Join("", _myArray);
-	}
-}
 
-static void Main(string[] args)
-{
-    BenchmarkRunner.Run<ConcatMultiStringsBenchmarks>();
+		if (disposing)
+		{
+		// TODO: dispose managed state (managed objects).
+		}
+
+		// TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+		Marshal.FreeHGlobal(ptr);
+
+		_disposed = true;
+	}
 }
 
 ```
-运行结果如下：
-<img width="100%" src="https://yuanzhitang.github.io/images/compare-concat-multiple-strings.png"/>
 
-结论：
-- 如果对小数量的字符串进行拼接， +, string.concat性能更好。
-- 对大量字符串拼接，如果可以预知多少容量，那么使用StringBuilder并指定初始Size。 如果无法预测容量，那么就采用StringBuilder
+这里的Dispose(bool disposing)采用virtual，主要是为了如果子类中如果有资源需要释放，那么可以重新此virtual方法。
+
+下面是推荐的模板方法，一个关键点是disposing需要传递给父类的dispose(bool)方法。
+```cs
+class DerivedClassWithFinalizer : BaseClassWithFinalizer
+{
+    // To detect redundant calls
+    private bool _disposedValue;
+
+    ~DerivedClassWithFinalizer() => this.Dispose(false);
+
+    // Protected implementation of Dispose pattern.
+    protected override void Dispose(bool disposing)
+    {
+        if (!_disposedValue)
+        {
+            if (disposing)
+            {
+                // TODO: dispose managed state (managed objects).
+            }
+
+            // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+            // TODO: set large fields to null.
+            _disposedValue = true;
+        }
+
+        // Call the base class implementation.
+        base.Dispose(disposing);
+    }
+}
+```
