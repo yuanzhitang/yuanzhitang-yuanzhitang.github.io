@@ -15,7 +15,7 @@ mathjax: true
 主要涵盖：
 - 类名，变量名
 - 常量，缩写
-- 下换线，类型名
+- 下划线，类型名
 - 接口，文件名
 - 命名空间
 - 括号，枚举
@@ -25,7 +25,6 @@ mathjax: true
 
 ### 类名
 推荐：采用PascalCasing命名方式给类名和方法名
-理由：和.NET命名一直，易读
 ```cs
 public class ClientActivity
 {
@@ -40,3 +39,4 @@ public class ClientActivity
 }
 
 ```
+理由：和.NET命名一致，易读
