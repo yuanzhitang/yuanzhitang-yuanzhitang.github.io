@@ -15,10 +15,9 @@ C#中类型主要分为引用类型和值类型，通常情况下值类型分配
 
 下图列出了C#中的值类型和引用类型。如果想知道一个变量是值类型还是引用类型，可以采用`variable.GetType().IsValueType`去检测。
 
+下图列出了C#中的核心值类型和引用类型:
+<img width="90%" src="https://yuanzhitang.github.io/images/csharp-types.png"/>
 
-
-
-<img width="100%" src="https://yuanzhitang.github.io/images/csharp-types.png"/>
 
 
 
