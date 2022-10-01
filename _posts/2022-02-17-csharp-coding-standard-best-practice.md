@@ -296,6 +296,7 @@ public enum Dockings
 
 * 不要显式的指定枚举的类型和枚举项的值
 * 不要用enum作为后缀
+
 ```cs
 // Don't
 public enum Direction : long
