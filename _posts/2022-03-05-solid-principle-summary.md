@@ -20,11 +20,11 @@ SOLID原则是一套比较成体系的设计原则。它不仅可以指导我们
 - 接口隔离原则（Interface segregation principle，ISP）
 - 依赖倒置原则（Dependency inversion principle，DIP）
 
-这些设计原则是有由Robert C Martin 提出并逐步整理和完善的。他在****《敏捷软件开发：原则、实践与模式》**和 **《架构整洁之道》** 两本书中，对 SOLID 原则进行了两次比较完整的阐述。在这两本时隔近 20 年的书里，Robert C Martin 对 SOLID 原则的理解也是在一步步深化，这是两本非常不错的书，推荐阅读。
-<img width="50%" src="https://yuanzhitang.github.io/images/bob.jpeg"/>
+<img style="width:150px;height:200px; margin:0px 50px" src="https://yuanzhitang.github.io/images/bob.jpeg"/>
 
 
 
+这些设计原则是有由Robert C Martin(Bob大叔) 提出并逐步整理和完善的。他在 **《敏捷软件开发：原则、实践与模式》** 和 **《架构整洁之道》** 两本书中，对 SOLID 原则进行了两次比较完整的阐述。在这两本时隔近 20 年的书里，Robert C Martin 对 SOLID 原则的理解也是在一步步深化，这是两本非常不错的书，推荐阅读。
 
 ### 单一职责原则
 ### 开放封闭原则
