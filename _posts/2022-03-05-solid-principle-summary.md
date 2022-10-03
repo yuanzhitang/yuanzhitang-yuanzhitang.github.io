@@ -43,4 +43,13 @@ ISP是这样表述的：
 > No client should be forced to depend on methods it does not use.
 
 很多接口设计得太“胖”了，里面包含了太多的内容，一个更好的设计是，关注不同的使用者，把大接口分解成一个一个的小接口，每个使用者面对不同的接口。
+比如，一个接口有查询的函数又有添加或者修改的函数，如果一个类实现了这个接口，但只用到查询的函数，而其他函数都不用，其实就违反了接口隔离原则。
 ### 依赖倒置原则
+依赖倒置原则（Dependency inversion principle，简称 DIP）是这样表述的：
+> 高层模块不应依赖于低层模块，二者应依赖于抽象。
+> High-level modules should not depend on low-level modules. Both should depend on abstractions.
+> 
+> 抽象不应依赖于细节，细节应依赖于抽象。
+> Abstractions should not depend on details. Details (concrete implementations) should depend on abstractions.
+
+这里的抽象主要是指接口和抽象类，高层模块直接引用抽象类或者接口，而具体类则实现接口或者抽象类。每次修改抽象接口的时候，一定也会去修改对应的具体实现。但是如果修改具体类时，却很少需要去修改相应的抽象接口，我们可以认为接口比实现更加稳定。想要设计上追求稳定，就必须多使用稳定的抽象接口，少依赖多变的具体实现。
