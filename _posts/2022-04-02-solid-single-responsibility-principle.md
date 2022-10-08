@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "SOLID之单一职责原则(SRP)"
+title: "SOLID-单一职责原则(SRP)"
 date: 2022-04-02 21:54:14
 categories: Design
 tags: C# .NET SOLID SRP
@@ -18,7 +18,7 @@ Robert C Martin(Bob大叔) 在他的著作 **《敏捷软件开发：原则、�
 > 一个模块应该有且仅有一个变化的原因
 > A class should have only one reason to change.
 
-而20你那，在他的新书 **《架构整洁之道》**中，其定义就变成了
+而20年后，在他的新书 **《架构整洁之道》**中，其定义变成了
 > 一个模块应该对一类且仅对一类行为者（actor）负责
 
 
